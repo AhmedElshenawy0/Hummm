@@ -1,0 +1,206 @@
+* {
+  box-sizing: border-box;
+  ul {
+    list-style: none;
+  }
+}
+
+$main-color: #000000;
+
+//--> Screens Breakpoints Mixin <--
+
+@mixin breakpoints($point) {
+  @if $point == xs {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if $point == mobile {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $point == small {
+    @media (min-width: 767px) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media (min-width: 991px) {
+      @content;
+    }
+  } @else if $point == large {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else if $point == xl {
+    @media (min-width: 1400px) {
+      @content;
+    }
+  } @else if $point == xxl {
+    @media (min-width: 1700px) {
+      @content;
+    }
+  }
+}
+
+// --> Sub Button <--
+
+$buttons: (
+  green-btn: #00d267,
+  blue-btn: #0049c4,
+  yellow-btn: #ffe200,
+  light-blue-btn: #00c5bf,
+  purple-btn: #9b00d6,
+  red-btn: #ff3300,
+  light-red-btn: #ff0045,
+  white-btn: #ffffff,
+  black-btn: #000000,
+);
+@each $name, $color in $buttons {
+  .#{$name} {
+    background-color: $color;
+    border: 1px solid $main-color;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    min-width: 109px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+.section-title {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 43px;
+
+  @include breakpoints(medium) {
+    margin-bottom: 29px;
+    font-size: 55px;
+    font-weight: bold;
+    line-height: 73px;
+  }
+}
+// --> Apply Helvetican Font <--
+
+@font-face {
+  font-family: "HelveticanAr"; /*Can be any text*/
+  src: local("AirbnbCerealMedium"),
+    url("./font/alfont_com_AlFont_com_helveticaneueltarabicroman1.ttf")
+      format("truetype");
+}
+
+$main-font: HelveticanAr;
+$color: #32de43;
+
+// --> Responsive Container <--
+
+.container-responsive {
+  margin: 0 auto;
+
+  @include breakpoints(xs) {
+    max-width: calc(100% - 48px);
+    padding-top: 40px;
+  }
+  @include breakpoints(mobile) {
+    max-width: 540px;
+    padding-top: 30px;
+    padding-bottom: 12px;
+  }
+  @include breakpoints(small) {
+    max-width: 720px;
+    padding-top: 20.5px;
+    padding-bottom: 10px;
+  }
+  @include breakpoints(medium) {
+    max-width: 960px;
+    padding-top: 25.5px;
+    padding-bottom: 15px;
+  }
+  @include breakpoints(large) {
+    max-width: 1140px;
+    padding-top: 30.5px;
+    padding-bottom: 20px;
+  }
+  @include breakpoints(xl) {
+    max-width: 1300px;
+    padding-top: 38.5px;
+    padding-bottom: 27px;
+  }
+}
+
+// --> Button Mixin <--
+
+@mixin button($shadow-l, $shadow-b) {
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  // border-top: none;
+  // border-left: none;
+  font-weight: bold;
+  background-color: white;
+  color: #000000;
+  width: 105px;
+  height: 33px;
+  line-height: 21px;
+  font-size: 15px;
+  transition: 0.3s;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: 10px;
+    background-color: #000000;
+    transition: 0.3s;
+  }
+  &:hover {
+    box-shadow: none;
+    // outline: 1px solid #000000;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+
+    &::after {
+      width: 0px;
+      height: 0px;
+    }
+  }
+  @include breakpoints(small) {
+    font-weight: bold;
+    background-color: white;
+    width: 172px;
+    height: 54px;
+    line-height: 24px;
+    font-size: 18px;
+
+    &:hover {
+      box-shadow: none;
+      outline: 1px solid #000000;
+      border: 1px solid #000000;
+      width: 171px;
+      height: 42px;
+    }
+  }
+}
+
+// --> Shadow Button Mixin <--
+
+@mixin shadowButton($shadow-l, $shadow-b) {
+  box-shadow: $shadow-l $shadow-b #000;
+  font-weight: bold;
+  background-color: white;
+  width: 132px;
+  height: 44px;
+  transition: 0.3s;
+  @include breakpoints(small) {
+    width: 172px;
+    height: 54px;
+  }
+
+  &:hover {
+    box-shadow: none;
+  }
+}
