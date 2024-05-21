@@ -10,7 +10,6 @@ import "vue-plyr/dist/vue-plyr.css";
 import 'video.js/dist/video-js.css';
 import VueDragscroll from "vue-dragscroll";
 import vueVimeoPlayer from 'vue-vimeo-player';
-import 'devexpress-reporting/dx-webdocumentviewer';
 const cache = new InMemoryCache();
 
 const apolloClient = new ApolloClient({
