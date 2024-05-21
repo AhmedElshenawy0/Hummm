@@ -14,7 +14,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
+env:
+  NODE_OPTIONS: --max-old-space-size=6144
 # Allow one concurrent deployment
 concurrency:
   group: 'pages'
