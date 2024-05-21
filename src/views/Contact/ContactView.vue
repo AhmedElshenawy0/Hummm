@@ -25,7 +25,7 @@
       </div>
       <label>الرساله *</label>
       <textarea name="" id="" cols="20" rows="6"></textarea>
-      <button @click.prevent="CreateContactItem()">ارسال</button>
+      <button >ارسال</button>
     </form>
     <div class="info-container position-relative">
       <h3>شاركونا استفساراتكم واقتراحاتكم</h3>
@@ -41,7 +41,6 @@
 </template>
 
 <script setup lang="ts">
-import { CONTACT_ITEM } from "@/graphql/queries";
 import { useMutation } from "@vue/apollo-composable";
 import gql from "graphql-tag";
 import { ref } from "vue";
@@ -51,33 +50,33 @@ const router = useRouter();
 const user = ref({
   status: "",
 });
-const {
-  mutate: CreateContactItem,
-  onDone,
-  onError,
-} = useMutation(
-  gql`
-    mutation Create_Contact_item($status: String!) {
-      create_Contact_item(data: { status: $status })
-    }
-  `,
-  () => ({
-    variables: {
-      status: user.value.status,
-    },
-  })
-);
+// const {
+//   mutate: CreateContactItem,
+//   onDone,
+//   onError,
+// } = useMutation(
+//   gql`
+//     mutation Create_Contact_item($status: String!) {
+//       create_Contact_item(data: { status: $status })
+//     }
+//   `,
+//   () => ({
+//     variables: {
+//       status: user.value.status,
+//     },
+//   })
+// );
 
-onDone((res) => {
-  console.log(res);
-  router.push({ name: "Contact-message" });
-});
-onError((res) => {
-  console.log(res.message);
-});
+// onDone((res) => {
+//   console.log(res);
+//   router.push({ name: "Contact-message" });
+// });
+// onError((res) => {
+//   console.log(res.message);
+// });
 </script>
 
-<style scoped lang="scss ">
+<style scoped lang="scss">
 @import "@/assets/sass/main.scss";
 .container-responsive{
   margin-bottom:20px;
