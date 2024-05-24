@@ -132,9 +132,12 @@ const handleClick = (episode: any) => {
 .show-container {
   gap: 25px;
   flex-direction: column-reverse;
-  margin-bottom: 40px;
   height: fit-content;
-  @include breakpoints(medium) {
+   @include breakpoints(medium) {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+  @include breakpoints(large) {
     justify-content: space-between;
     flex-direction: row-reverse;
     margin-bottom: 180px;
