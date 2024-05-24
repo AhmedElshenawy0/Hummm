@@ -134,7 +134,9 @@ export const ALL_READ_QUERY = gql`
   query {
     Article(filter: { type: { _contains: "read" } }) {
       id
-      translations {
+      translations (
+          filter: { languages_code: { name: { _contains: "Arabic" } } }
+        ){
         title
         content
         cover {
