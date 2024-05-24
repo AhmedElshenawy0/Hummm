@@ -115,7 +115,7 @@ const props = defineProps<{ ImageId: string; data: Article }>();
     height: 100%;
 
     .image {
-      width: 185px;
+      min-width: 185px;
       height: 222px;
 
       img {
