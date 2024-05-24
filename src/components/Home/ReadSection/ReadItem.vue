@@ -142,6 +142,8 @@ const props = defineProps<{ ImageId: string; data: Article }>();
         display: flex;
         flex-direction: column;
         gap: 10px;
+        margin-bottom: 20px;
+
 
         span {
           display: flex;
