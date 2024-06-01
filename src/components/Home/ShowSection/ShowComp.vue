@@ -57,7 +57,7 @@ const props = defineProps<{ background: string }>();
               </div>
             </div>
 
-            <div class="d-flex flex-column justify-content-md-between">
+            <div class="d-flex flex-column info">
               <h3>{{ episode.translations[0].title.split(" ",6).join(" ") }}</h3>
               <div class="episode-docs">
                 <p>
@@ -167,13 +167,21 @@ const props = defineProps<{ background: string }>();
       // width: 100%;
 
       .video-item {
+   .info{
+          gap:17px;
+          @media (max-width:991px) {
+            justify-content: space-between;
+            gap:0;
+            margin-bottom: 15px;
+          }
+        }
         h3 {
           font-size: 16px;
           max-width: 300px;
           font-weight: bold;
           line-height: 21px;
           color: #ffffff;
-          margin-bottom: 20px;
+          margin-bottom: 0px;
         }
         p {
           color: #707070;
@@ -226,6 +234,7 @@ const props = defineProps<{ background: string }>();
           .episode-docs {
             display: flex;
             justify-content: space-between;
+            flex-direction:column;
           }
         }
 

@@ -14,7 +14,7 @@
 @import "@/assets/sass/main.scss";
 .advertising {
   position: relative;
-  margin: 20px;
+  margin: 20px 0;
 
   h2 {
     position: absolute;

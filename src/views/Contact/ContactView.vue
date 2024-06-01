@@ -25,7 +25,7 @@
       </div>
       <label>الرساله *</label>
       <textarea name="" id="" cols="20" rows="6"></textarea>
-      <button >ارسال</button>
+      <button>ارسال</button>
     </form>
     <div class="info-container position-relative">
       <h3>شاركونا استفساراتكم واقتراحاتكم</h3>
@@ -46,10 +46,10 @@ import gql from "graphql-tag";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-const router = useRouter();
-const user = ref({
-  status: "",
-});
+// const router = useRouter();
+// const user = ref({
+//   status: "",
+// });
 // const {
 //   mutate: CreateContactItem,
 //   onDone,
