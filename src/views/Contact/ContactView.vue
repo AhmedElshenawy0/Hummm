@@ -2,15 +2,15 @@
   <div
     class="container-responsive d-flex flex-column-reverse flex-lg-row justify-content-between gap-4 align-items-center"
   >
-    <form @submit.prevent="onDone()" class="d-flex flex-column gap-3">
+    <form @submit.prevent="CreateContactItem()" class="d-flex flex-column gap-3">
       <div class="inputs-holder d-flex gap-2">
         <div class="w-50 d-flex flex-column gap-2 mb-1">
           <label>الاسم بالكامل * </label>
-          <input type="text" />
+          <input type="text" v-model="user.name" required/>
         </div>
         <div class="w-50 d-flex flex-column gap-2 mb-1">
           <label> البريد الالكتروني *</label>
-          <input type="email" />
+          <input type="email" required/>
         </div>
       </div>
       <div class="inputs-holder d-flex gap-2">
@@ -48,7 +48,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const user = ref({
-  status: "dasdasd",
+  name: "",
 });
 const {
   mutate: CreateContactItem,
@@ -62,13 +62,12 @@ const {
   `,
   () => ({
     variables: {
-      status: user.value.status,
+      status: user.value.name,
     },
   })
 );
 
-onDone((res) => {
-  console.log(res);
+onDone(() => {
   router.push({ name: "Contact-message" });
 });
 onError((res) => {
