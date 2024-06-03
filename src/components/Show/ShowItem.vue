@@ -21,6 +21,8 @@
                 show?.translations[0]?.title ||
                 show?.translations[1]?.title,
             },
+            query:{name:show?.translations[0]?.title ||
+                show?.translations[1]?.title,}
           })
         "
         >
@@ -65,6 +67,8 @@
                 show?.translations[0]?.title ||
                 show?.translations[1]?.title,
             },
+            query:{name:show?.translations[0]?.title ||
+                show?.translations[1]?.title,}
           })
         "
         >
@@ -106,9 +110,7 @@ import TwoAds from "../Home/Advertising/TwoAds.vue";
 const { result } = useQuery(ALL_SHOW_QUERY);
 const shows = computed(() => result?.value?.shows);
 
-watchEffect(() => {
-  console.log(shows.value);
-})
+
 </script>
 
 <style scoped lang="scss">

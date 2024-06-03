@@ -73,8 +73,8 @@ const articles = computed(
     ) ?? []
 );
 
-watchEffect(() => {
-  console.log(articles.value);
+onUpdated(() => {
+  window.scrollTo(0, 0);
 });
 onBeforeMount(() => {
   window.scrollTo(0, 0);

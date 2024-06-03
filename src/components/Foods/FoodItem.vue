@@ -1,7 +1,13 @@
 <template>
   <div
     class="d-flex flex-column item"
-    @click="router.push(`/foods/${item?.id}`)"
+    @click="
+      router.push({
+        name: 'Single-Food',
+        params: { id: item.id },
+        query: { name: item?.translations[0]?.title },
+      })
+    "
   >
     <div class="image position-relative">
       <img

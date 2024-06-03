@@ -1,5 +1,9 @@
 <template>
-  <div class="d-flex item" @click="$router.push(`/foods/${data?.id}`)">
+  <div class="d-flex item" @click="$router.push({
+        name: 'Single-Food',
+        params: { id: data.id },
+        query: { name: data?.translations[0]?.title },
+      })">
     <div class="image position-relative">
       <img
         class="thumb"
@@ -70,7 +74,7 @@ const handleClick = () => {
 .item {
   height: 209px;
   gap: 15px;
-
+cursor:pointer;
   .docs {
     width: 50%;
     display: flex;

@@ -1,5 +1,9 @@
 <template>
-  <div class="cols col-lg-4 item d-none d-lg-block" @click="$router.push(`/foods/${data?.id}`)">
+  <div class="cols col-lg-4 item d-none d-lg-block" @click="$router.push({
+        name: 'Single-Food',
+        params: { id: data?.id },
+        query: { name: data?.translations[0]?.title },
+      })">
     <div class="video" >
       <img
         class="thumb"
@@ -62,6 +66,7 @@ const props = defineProps<{ data: Article_Filter; btnColor: string }>();
   box-shadow: 4px 5px #000;
   border: 1px solid #000000;
   padding: 15px;
+  cursor:pointer;
   .video {
     width: 100%;
     height: 202px;

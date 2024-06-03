@@ -2,7 +2,7 @@
   <div
     class="container-responsive d-flex flex-column-reverse flex-lg-row justify-content-between gap-4 align-items-center"
   >
-    <form class="d-flex flex-column gap-3">
+    <form @submit.prevent="onDone()" class="d-flex flex-column gap-3">
       <div class="inputs-holder d-flex gap-2">
         <div class="w-50 d-flex flex-column gap-2 mb-1">
           <label>الاسم بالكامل * </label>
@@ -25,7 +25,7 @@
       </div>
       <label>الرساله *</label>
       <textarea name="" id="" cols="20" rows="6"></textarea>
-      <button>ارسال</button>
+      <button type="submit">ارسال</button>
     </form>
     <div class="info-container position-relative">
       <h3>شاركونا استفساراتكم واقتراحاتكم</h3>
@@ -46,34 +46,34 @@ import gql from "graphql-tag";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-// const router = useRouter();
-// const user = ref({
-//   status: "",
-// });
-// const {
-//   mutate: CreateContactItem,
-//   onDone,
-//   onError,
-// } = useMutation(
-//   gql`
-//     mutation Create_Contact_item($status: String!) {
-//       create_Contact_item(data: { status: $status })
-//     }
-//   `,
-//   () => ({
-//     variables: {
-//       status: user.value.status,
-//     },
-//   })
-// );
+const router = useRouter();
+const user = ref({
+  status: "dasdasd",
+});
+const {
+  mutate: CreateContactItem,
+  onDone,
+  onError,
+} = useMutation(
+  gql`
+    mutation Create_Contact_item($status: String!) {
+      create_Contact_item(data: { status: $status })
+    }
+  `,
+  () => ({
+    variables: {
+      status: user.value.status,
+    },
+  })
+);
 
-// onDone((res) => {
-//   console.log(res);
-//   router.push({ name: "Contact-message" });
-// });
-// onError((res) => {
-//   console.log(res.message);
-// });
+onDone((res) => {
+  console.log(res);
+  router.push({ name: "Contact-message" });
+});
+onError((res) => {
+  console.log(res.message);
+});
 </script>
 
 <style scoped lang="scss">

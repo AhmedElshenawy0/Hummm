@@ -85,7 +85,7 @@ import type { Article } from "@/generated/graphql";
 import { ALL_FOOD_QUERY } from "@/graphql/queries";
 import { useQuery } from "@vue/apollo-composable";
 import { computed, onBeforeMount, onUpdated, watchEffect } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 // Get Id From Route Params
 const route = useRoute();
@@ -98,15 +98,14 @@ const singleFood = computed(
     result.value?.Article.find((ele: Article) => ele.id == route.params.id) ??
     []
 );
+const router = useRouter();
 
 onBeforeMount(() => {
-  window.scrollTo(0, 0)
-
-})
+  window.scrollTo(0, 0);
+});
 onUpdated(() => {
-  window.scrollTo(0, 0)
-
-})
+  window.scrollTo(0, 0);
+});
 </script>
 
 <style scoped lang="scss">
@@ -143,9 +142,9 @@ onUpdated(() => {
   .bottom-foods-holder {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(299px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(299px, 1fr));
     gap: 20px;
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 </style>
