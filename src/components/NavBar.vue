@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-column container-responsive">
     <div class="d-flex justify-content-between align-items-center">
-      <div class="logo">
+      <div class="logo" @click="$router.push('/')">
         <img src="@/assets/Humm.svg" alt="" />
       </div>
       <div class="subscribe">
@@ -196,7 +196,11 @@ const router = useRouter();
 const handleClick = (item:any) => {
   search.value = false;
   if (item?.type == "food") {
-    router.push(`/foods/${item?.id}`);
+    router.push({
+        name: 'Single-Food',
+        params: { id: item?.id },
+        query: { name: item?.translations[0]?.title },
+      });
   } else if (item.type == "read") {
     router.push({
       name: "Single-Read",
@@ -224,11 +228,13 @@ const handleClick = (item:any) => {
 .container-responsive {
   font-family: $main-font;
   margin: 0 auto;
-
+.logo{
+  cursor: pointer;
+}
   .search-com {
-    position: relative;
+    position: fixed;
     background-color: #000000bb;
-    width: 100vw;
+    width: 100%;
     height: calc(100vh + 400px);
     z-index: 999999999;
     top: -300px;
@@ -237,6 +243,7 @@ const handleClick = (item:any) => {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top:150px;
 
     .search-container {
       background-color: white;
@@ -266,15 +273,15 @@ const handleClick = (item:any) => {
     }
     .result-holder {
       border: 2px solid #000000;
-
       background-color: white;
-      // margin-top:20px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       width: 70%;
       padding: 10px;
       gap: 10px;
+
+      
       .article-item {
         width: 49%;
         border: 1px solid #000000;
@@ -282,8 +289,13 @@ const handleClick = (item:any) => {
         display: flex;
         flex-direction: column;
         gap: 0;
+        @media(max-width:767px){
+            width:100%;
+          }
         p {
           margin: 0;
+
+          
         }
         h4 {
           font-size: calc(0.9rem + 0.22959vw);
