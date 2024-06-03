@@ -1,6 +1,8 @@
 <template>
   <div class="container-responsive">
-    <div class="top-links d-flex w-100 justify-content-between align-items-center">
+    <div
+      class="top-links d-flex w-100 justify-content-between align-items-center"
+    >
       <div class="social d-flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -94,11 +96,11 @@
       <button>اشترك</button>
     </div>
     <ul class="links d-lg-none">
-        <li>من نحن</li>
-        <li>الصحافه</li>
-        <li>أعلن معنا</li>
-        <li>اتصل بنا</li>
-      </ul>
+      <li>من نحن</li>
+      <li>الصحافه</li>
+      <li>أعلن معنا</li>
+      <li>اتصل بنا</li>
+    </ul>
     <div class="image">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -158,11 +160,11 @@
         </g>
       </svg>
     </div>
-    <ul class="buttom-links ">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+    <ul class="buttom-links">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
     </ul>
   </div>
 </template>
@@ -174,59 +176,63 @@
 .container-responsive {
   .top-links {
     .social {
-        gap:18px;
+      gap: 18px;
     }
-    
-    button{
-        @include shadowButton(5px, 4px)
+
+    button {
+      @include shadowButton(5px, 4px);
     }
   }
-  .links{
-        display:flex;
-        justify-content: space-between;
-        margin-top: 32px;
-        gap:0;
+  .links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    gap: 0;
 
-        li{
-            font-size:18px;
-            font-weight:bold;
-            line-height:24px;
-        }
+    @media (max-width: 767px) {
+      margin-top: 32px;
     }
-  .image{
-    width:100%;
-    display:flex;
+
+    li {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 24px;
+    }
+  }
+  .image {
+    width: 100%;
+    display: flex;
     justify-content: center;
-    margin:40px 0;
+    margin: 40px 0;
   }
 
-  @include breakpoints(medium){
+  @include breakpoints(medium) {
     .top-links {
-    .social {
-        gap:18px;
-    }
-  
-    button{
-        @include shadowButton(5px, 4px)
-    }
-  }
-  .links{
-        display:flex;
-        align-items: center;
-        gap:33px;
+      .social {
+        gap: 18px;
+      }
 
-        li{
-            font-size:18px;
-            font-weight:bold;
-            line-height:24px;
-        }
+      button {
+        @include shadowButton(5px, 4px);
+      }
     }
-  .image{
-    width:100%;
-    display:flex;
-    justify-content: center;
-    margin:40px 0;
-  }
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 33px;
+
+      li {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+      }
+    }
+    .image {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+    }
   }
 }
 </style>
