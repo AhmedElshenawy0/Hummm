@@ -36,7 +36,6 @@ import BrandsComVue from "@/components/Home/BrandsSection/BrandsCom.vue";
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/main.scss";
 
 .banner {
   background-image: url("https://humm.world/wp-content/uploads/2023/05/ac08abd1-d24d-4d1b-aa18-dc5911920b02.png");

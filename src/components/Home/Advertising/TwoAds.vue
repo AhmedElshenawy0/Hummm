@@ -8,7 +8,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 div {
   margin: 20px 0;
   display: flex;

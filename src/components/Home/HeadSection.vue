@@ -10,7 +10,6 @@ const props = defineProps<{ title: string; btn: string }>();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 
 .press-head {
   margin-bottom: 43px;

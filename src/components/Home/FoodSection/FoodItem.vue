@@ -70,7 +70,6 @@ const handleClick = () => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .item {
   height: 209px;
   gap: 15px;

@@ -225,7 +225,6 @@ const handleClick = (item: any) => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 
 .container-responsive {
   font-family: $main-font;

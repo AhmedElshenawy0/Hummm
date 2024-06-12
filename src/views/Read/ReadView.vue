@@ -49,7 +49,6 @@ const readSlice = ref<number>(3);
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   button {
     @include button( 4px, 5px);

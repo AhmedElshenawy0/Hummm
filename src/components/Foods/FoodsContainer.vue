@@ -49,7 +49,6 @@ onUpdated(() => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .foods-container {
   .foods-holder,
   .bottom-foods-holder {

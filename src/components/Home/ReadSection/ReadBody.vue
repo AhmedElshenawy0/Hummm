@@ -56,7 +56,6 @@ const randomRead = ref<number>(Math.floor(Math.random() * 50))
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 
 .read {
   display: flex;

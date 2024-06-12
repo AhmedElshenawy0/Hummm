@@ -19,7 +19,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   padding-bottom: 25px;
   .subscribe {

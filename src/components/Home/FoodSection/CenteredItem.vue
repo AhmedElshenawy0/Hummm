@@ -61,7 +61,6 @@ const props = defineProps<{ data: Article_Filter; btnColor: string }>();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .item {
   box-shadow: 4px 5px #000;
   border: 1px solid #000000;

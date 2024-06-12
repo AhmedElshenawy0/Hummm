@@ -34,7 +34,6 @@ const limitedFoods = ref<number>(Math.floor(Math.random() * 35));
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/main.scss";
 .foods-player{
   // margin-bottom:60px;
 

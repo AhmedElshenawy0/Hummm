@@ -127,7 +127,6 @@ const handleClick = (episode: any) => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 
 .show-container {
   gap: 25px;

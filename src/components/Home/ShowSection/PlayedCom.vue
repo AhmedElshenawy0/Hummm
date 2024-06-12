@@ -93,7 +93,6 @@ watchEffect(() => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .played-container {
   h5 {
     margin-top: 15px;

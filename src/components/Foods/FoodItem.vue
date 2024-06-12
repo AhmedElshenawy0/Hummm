@@ -95,7 +95,6 @@ const props = defineProps<{ item: Article_Filter; btnColor: string }>();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .item {
   padding: 14.5px 17.5px;
   border: 1px solid #000000;

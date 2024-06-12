@@ -11,7 +11,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   // margin: 20px 0;
   @include breakpoints(xs) {

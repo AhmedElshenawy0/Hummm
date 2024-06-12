@@ -114,7 +114,6 @@ const shows = computed(() => result?.value?.shows);
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .item-container {
   .show-head {
     h3 {

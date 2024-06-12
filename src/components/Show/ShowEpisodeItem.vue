@@ -116,7 +116,6 @@ watchEffect(() => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .item {
   padding: 20px 15px;
   border: 1px solid #00c5bf;

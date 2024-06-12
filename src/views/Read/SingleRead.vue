@@ -132,7 +132,6 @@ const read = computed(():Article_Filter =>
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   .desc {
     width: 100%;

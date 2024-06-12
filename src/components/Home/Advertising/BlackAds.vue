@@ -11,7 +11,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .advertising {
   position: relative;
   margin: 20px 0;

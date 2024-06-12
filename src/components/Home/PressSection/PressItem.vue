@@ -16,7 +16,6 @@ const props = defineProps<{ data: any }>();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .press-item {
   background-size: cover;
   width: 100%;

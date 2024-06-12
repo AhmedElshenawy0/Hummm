@@ -11,7 +11,6 @@ import SectionHead from "@/components/Home/SectionHead.vue";
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   gap: 10px;
 

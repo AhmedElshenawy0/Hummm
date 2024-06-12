@@ -43,7 +43,6 @@ const props = defineProps<{ data: Article_Filter }>();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .item {
   margin-top: 20px;
   gap: 20px;

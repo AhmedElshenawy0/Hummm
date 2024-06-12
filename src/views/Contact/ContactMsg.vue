@@ -85,7 +85,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .msg-container {
   background-color: #ffffff;
   padding: 0px;

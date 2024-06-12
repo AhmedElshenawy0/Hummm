@@ -47,7 +47,6 @@ watchEffect(() => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 @include breakpoints(xs){
   .top-list {
   gap:16px;

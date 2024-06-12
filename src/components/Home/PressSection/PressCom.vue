@@ -25,7 +25,6 @@ const pressItems = computed(() => result.value?.Article);
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   .press-head {
     margin-bottom: 43px;

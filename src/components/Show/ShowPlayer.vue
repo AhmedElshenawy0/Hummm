@@ -118,7 +118,6 @@ const handleClick = (show: any) => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .show-container {
   background-color: $main-color;
 

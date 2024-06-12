@@ -10,7 +10,6 @@ const props = defineProps<{title:string, toName:string}>()
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 
   .more {
     @include button( 4px, 5px);

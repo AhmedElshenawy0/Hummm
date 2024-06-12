@@ -48,7 +48,6 @@ import { ref } from "vue";
 
 </script>
 <style lang="scss" scoped>
-@import "@/assets/sass/main.scss";
 .about {
   max-width: 1630px;
   margin: 0 auto;

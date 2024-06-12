@@ -43,7 +43,6 @@ const props = defineProps<{ ImageId: string; data: Article }>();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .right-read {
   width: 100%;
   gap: 25px;

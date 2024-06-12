@@ -90,7 +90,6 @@ onBeforeMount(() => {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .category {
   .image {
     height: 500px;

@@ -35,7 +35,6 @@ import NewAds from "../Advertising/NewAds.vue";
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 
 .press-head {
   margin: 20px 0 10px;

@@ -122,7 +122,6 @@ const props = defineProps<{ background: string }>();
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/main.scss";
 
 .show-holder {
   background-color: $main-color;

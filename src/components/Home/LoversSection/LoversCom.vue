@@ -27,7 +27,6 @@ const about = computed(() => result.value?.homepage?.translations[0]);
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/sass/main.scss";
 .container-responsive {
   flex-direction: column-reverse;
   button {
