@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ShowPlayer />
+    <ShowPlayer :show="shows[randomShow]" />
     <div class="container-responsive">
       <ShowItem :shows="shows"/>
     </div>
@@ -11,11 +11,13 @@
 import ShowPlayer from "@/components/Show/ShowPlayer.vue";
 import { useQuery } from "@vue/apollo-composable";
 import { ALL_SHOW_QUERY } from "@/graphql/queries";
-import { computed, onBeforeMount, onUpdated, watchEffect } from "vue";
+import { computed, onBeforeMount, onUpdated, ref } from "vue";
 import ShowItem from "@/components/Show/ShowItem.vue";
 import type { Shows } from "@/generated/graphql";
 const { result } = useQuery(ALL_SHOW_QUERY);
 const shows = computed(():Shows[] => result?.value?.shows);
+
+const randomShow = ref<number>(Math.floor(Math.random() * 4));
 
 onBeforeMount(() => {
   window.scrollTo(0, 0)

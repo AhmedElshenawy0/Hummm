@@ -115,7 +115,7 @@
           </ul>
         </div>
       </ul>
-      <div class="search" @click="search = true">
+      <div class="search" @click="openSearch">
         <span> ابحث هنا </span>
         <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 24 24">
           <path
@@ -155,7 +155,7 @@
       </div>
       <div class="result-holder">
         <div
-          v-for="(item, i) in article.slice(0, 6)"
+          v-for="(item, i) in article?.slice(0, 6)"
           :key="i"
           class="article-item"
           @click="handleClick(item)"
@@ -170,37 +170,40 @@
 
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
-import { computed, ref, watchEffect } from "vue";
+import { computed, onUpdated, ref, watchEffect } from "vue";
 import { useQuery } from "@vue/apollo-composable";
-import { ALL_ARTICLE } from "@/graphql/queries";
-import type {
-  
-  Article_Filter,
-  
-} from "@/generated/graphql";
+import { ALL_ARTICLE, SEARCHED_QUERY } from "@/graphql/queries";
+import type { Article_Filter } from "@/generated/graphql";
 
 const openMenu = ref(false);
-const searchInput = ref<string>("");
+const searchInput = ref<string>("ن");
 const search = ref(false);
-const { result } = useQuery(ALL_ARTICLE);
+const { result, variables } = useQuery(SEARCHED_QUERY, {
+  title: searchInput.value,
+});
+
+// All Articles
 const articles = computed(() => result.value?.Article);
-const article = computed(() =>
-  articles.value?.filter(
-    (ele: Article_Filter) =>
-      ele?.translations[0]?.title &&
-      ele?.translations[0]?.title.includes(searchInput.value)
-  )
-);
+
+// Searched Article
+const article = computed(() => articles.value);
 
 const router = useRouter();
-const handleClick = (item:any) => {
+const openSearch = () => {
+  search.value = true;
+  searchInput.value = "";
+};
+onUpdated(() => {
+  variables.value = { title: searchInput.value };
+});
+const handleClick = (item: any) => {
   search.value = false;
   if (item?.type == "food") {
     router.push({
-        name: 'Single-Food',
-        params: { id: item?.id },
-        query: { name: item?.translations[0]?.title },
-      });
+      name: "Single-Food",
+      params: { id: item?.id },
+      query: { name: item?.translations[0]?.title },
+    });
   } else if (item.type == "read") {
     router.push({
       name: "Single-Read",
@@ -219,7 +222,6 @@ const handleClick = (item:any) => {
     console.log("NO THING");
   }
 };
-
 </script>
 
 <style scoped lang="scss">
@@ -228,9 +230,9 @@ const handleClick = (item:any) => {
 .container-responsive {
   font-family: $main-font;
   margin: 0 auto;
-.logo{
-  cursor: pointer;
-}
+  .logo {
+    cursor: pointer;
+  }
   .search-com {
     position: fixed;
     background-color: #000000bb;
@@ -243,7 +245,7 @@ const handleClick = (item:any) => {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top:150px;
+    padding-top: 150px;
 
     .search-container {
       background-color: white;
@@ -281,7 +283,6 @@ const handleClick = (item:any) => {
       padding: 10px;
       gap: 10px;
 
-      
       .article-item {
         width: 49%;
         border: 1px solid #000000;
@@ -289,13 +290,11 @@ const handleClick = (item:any) => {
         display: flex;
         flex-direction: column;
         gap: 0;
-        @media(max-width:767px){
-            width:100%;
-          }
+        @media (max-width: 767px) {
+          width: 100%;
+        }
         p {
           margin: 0;
-
-          
         }
         h4 {
           font-size: calc(0.9rem + 0.22959vw);
@@ -378,9 +377,8 @@ const handleClick = (item:any) => {
       background-color: #000000;
       z-index: 222;
       width: 90%;
-      @include breakpoints(mobile){
+      @include breakpoints(mobile) {
         width: 481px;
-
       }
       .r-nav {
         display: flex;

@@ -4,7 +4,7 @@
       <FoodItem
         :item="item"
         btnColor="light-blue-btn"
-        v-for="(item, i) in allFoods.slice(moreBtn2, moreBtn2 + 8)"
+        v-for="(item, i) in allFoods.slice(0,8)"
         :key="i"
       />
     </div>
@@ -15,33 +15,37 @@
       <FoodItem
         :item="item"
         btnColor="light-blue-btn"
-        v-for="(item, i) in allFoods.slice(0, moreBtn)"
+        v-for="(item, i) in allFoods"
         :key="i"
       />
     </div>
-    <button v-if="moreBtn < allFoods?.length" class="more-btn" @click="handleClick">اعرف المزيد</button>
+    <button class="more-btn" @click="handleClick">اعرف المزيد</button>
 
   </div>
 </template>
 
 <script setup lang="ts">
 import { useQuery } from "@vue/apollo-composable";
-import { ALL_FOOD_QUERY } from "@/graphql/queries";
-import { computed, ref } from "vue";
+import { LIMITED_FOOD_QUERY } from "@/graphql/queries";
+import { computed, onUpdated, ref } from "vue";
 import FoodItem from "@/components/Foods/FoodItem.vue";
 import TwoAds from "@/components/Home/Advertising/TwoAds.vue";
 import SubscribeCom from "@/components/Home/SubscribSection/SubscribeCom.vue";
 
 
 let moreBtn = ref<number>(8);
-let moreBtn2 = ref<number>(Math.random() * 35);
 
-const { result } = useQuery(ALL_FOOD_QUERY);
+const { result, variables } = useQuery(LIMITED_FOOD_QUERY, {limit: moreBtn.value});
 const allFoods = computed(() => result.value?.Article ?? []);
 
 const handleClick = () => {
   moreBtn.value += 8;
+  variables.value = {limit: moreBtn.value}
+
 };
+onUpdated(() => {
+  variables.value = {limit: moreBtn.value}
+})
 </script>
 
 <style scoped lang="scss">

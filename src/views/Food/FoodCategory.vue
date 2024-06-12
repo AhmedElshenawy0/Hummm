@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import FoodItem from "@/components/Foods/FoodItem.vue";
 import type { Article_Filter } from "@/generated/graphql";
-import { ALL_FOOD_QUERY } from "@/graphql/queries";
+import { ALL_FOOD_QUERY, Category_FOOD_QUERY } from "@/graphql/queries";
 import { useQuery } from "@vue/apollo-composable";
 import gql from "graphql-tag";
 import { computed, onBeforeMount, onUpdated, ref, watchEffect } from "vue";
@@ -33,17 +33,15 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const moreNum = ref<number>(8);
-const { result } = useQuery(ALL_FOOD_QUERY);
-const articles = computed(
-  ():Article_Filter[] =>
-    result.value?.Article?.filter(
-      (ele:Article_Filter) => ele?.category?.translations[0]?.title == route.params.name
-    ) ?? []
-);
+const { result } = useQuery(Category_FOOD_QUERY, { name: route.params.name });
+const articles = computed((): Article_Filter[] => result.value?.Article ?? []);
+watchEffect(() => {
+  console.log(articles.value);
+  console.log(route.params);
+});
 onBeforeMount(() => {
-  window.scrollTo(0, 0)
-
-})
+  window.scrollTo(0, 0);
+});
 </script>
 
 <style scoped lang="scss">

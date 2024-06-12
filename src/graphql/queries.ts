@@ -1,5 +1,47 @@
 import gql from "graphql-tag";
 
+// Seraching Query
+export const SEARCHED_QUERY = gql`
+  query ($title:String){
+  Article(filter: { translations: { title: { _contains: $title } } }) {
+      id
+      video
+      type
+      shows {
+        translations (
+          filter: { languages_code: { name: { _contains: "Arabic" } } }
+        ){
+          title
+        }
+      }
+      date_created
+      user_created {
+        first_name
+        last_name
+      }
+      date_updated
+      user_updated {
+        first_name
+        last_name
+      }
+      translations {
+        title
+        content
+        cover {
+          id
+        }
+      }
+      category {
+        translations(
+          filter: { languages_code: { name: { _contains: "Arabic" } } }
+        ) {
+          title
+        }
+      }
+    }
+  }
+`;
+
 // Get All Foods
 
 export const ALL_FOOD_QUERY = gql`
@@ -39,8 +81,9 @@ export const ALL_FOOD_QUERY = gql`
 `;
 // Get Limited Foods
 export const LIMITED_FOOD_QUERY = gql`
-  query {
-    Article(limit: 8, filter: { type: { _contains: "food" } }) {
+
+  query ($limit:Int){
+    Article(limit: $limit, filter: { type: { _contains: "food" } }) {
       id
       video
       date_created
@@ -65,6 +108,80 @@ export const LIMITED_FOOD_QUERY = gql`
           filter: { languages_code: { name: { _contains: "Arabic" } } }
         ) {
           title
+        }
+      }
+    }
+  }
+`;
+// Get Single Foods Category
+export const Category_FOOD_QUERY = gql`
+  query ($name: String) {
+    Article(
+      filter: { category: { translations: { title: { _contains: $name} } } }
+    ) {
+      id
+      video
+      date_created
+      user_created {
+        first_name
+        last_name
+      }
+      date_updated
+      user_updated {
+        first_name
+        last_name
+      }
+      translations {
+        title
+        content
+        cover {
+          id
+        }
+      }
+      category {
+        translations(
+          filter: { languages_code: { name: { _contains: "Arabic" } } }
+        ) {
+          title
+          cover {
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+// Get Single Foods 
+export const Single_FOOD_QUERY = gql`
+  query ($id: ID!) {
+    Article_by_id(id: $id) {
+      id
+      video
+      date_created
+      user_created {
+        first_name
+        last_name
+      }
+      date_updated
+      user_updated {
+        first_name
+        last_name
+      }
+      translations {
+        title
+        content
+        cover {
+          id
+        }
+      }
+      category {
+        translations(
+          filter: { languages_code: { name: { _contains: "Arabic" } } }
+        ) {
+          title
+          cover {
+            id
+          }
         }
       }
     }
@@ -134,9 +251,9 @@ export const ALL_READ_QUERY = gql`
   query {
     Article(filter: { type: { _contains: "read" } }) {
       id
-      translations (
-          filter: { languages_code: { name: { _contains: "Arabic" } } }
-        ){
+      translations(
+        filter: { languages_code: { name: { _contains: "Arabic" } } }
+      ) {
         title
         content
         cover {
@@ -158,6 +275,7 @@ export const ALL_READ_QUERY = gql`
     }
   }
 `;
+
 // Get Single Read
 export const SINGLE_READ_QUERY = gql`
   query {
@@ -239,6 +357,62 @@ export const ALL_SHOW_QUERY = gql`
           }
         }
         shows {
+          id
+          translations {
+            id
+            title
+            description
+          }
+        }
+        date_created
+        date_updated
+
+        video
+        press_link
+        user_created {
+          first_name
+          last_name
+        }
+        translations {
+          title
+          description
+          content
+          cover {
+            id
+            filename_disk
+          }
+        }
+      }
+    }
+  }
+`;
+export const UPDATE_SHOW_PLAYER = gql`
+  query ($id:ID!){
+    shows_by_id( id: $id  ) {
+      id
+      user_created {
+        first_name
+        last_name
+      }
+      date_updated
+      date_created
+      translations {
+        title
+        description
+        cover {
+          id
+          filename_disk
+        }
+      }
+      all_episodes {
+        id
+        category {
+          translations {
+            title
+          }
+        }
+        shows {
+          id
           translations {
             id
             title
@@ -268,7 +442,7 @@ export const ALL_SHOW_QUERY = gql`
   }
 `;
 export const SINGLE_SHOW_QUERY = gql`
-  query ($name: String) {
+  query ($name: String, $count:Int) {
     shows(filter: { translations: { title: { _contains: $name } } }) {
       id
       user_created {
@@ -284,7 +458,7 @@ export const SINGLE_SHOW_QUERY = gql`
           filename_disk
         }
       }
-      all_episodes {
+      all_episodes(limit:$count) {
         id
         shows {
           translations {
@@ -308,6 +482,44 @@ export const SINGLE_SHOW_QUERY = gql`
             id
             filename_disk
           }
+        }
+      }
+    }
+  }
+`;
+export const SINGLE_EPISODE_QUERY = gql`
+  query ($id: ID!) {
+    Article_by_id(id: $id) {
+      id
+      video
+      type
+      shows {
+        translations {
+          title
+        }
+      }
+      date_created
+      user_created {
+        first_name
+        last_name
+      }
+      date_updated
+      user_updated {
+        first_name
+        last_name
+      }
+      translations {
+        title
+        content
+        cover {
+          id
+        }
+      }
+      category {
+        translations(
+          filter: { languages_code: { name: { _contains: "Arabic" } } }
+        ) {
+          title
         }
       }
     }

@@ -38,8 +38,8 @@
                 />
               </svg>
 
-              {{ singleFood?.user_created.first_name }}
-              {{ singleFood?.user_created.last_name }}
+              {{ singleFood?.user_created?.first_name }}
+              {{ singleFood?.user_created?.last_name }}
             </p>
             <p class="d-flex gap-2">
               <svg
@@ -61,7 +61,7 @@
                   d="M12,22A10,10,0,1,1,22,12,10,10,0,0,1,12,22Zm0-2a8,8,0,1,0-8-8A8,8,0,0,0,12,20Zm1-8h4v2H11V7h2Z"
                 />
               </svg>
-              {{ new Date(singleFood?.date_created).toDateString() }}
+              {{ new Date(singleFood?.date_created ).toDateString() }}
             </p>
           </div>
           <div class="social d-flex gap-3">
@@ -79,33 +79,42 @@
 </template>
 
 <script setup lang="ts">
-import { ALL_SHOW_QUERY, SINGLE_SHOW_QUERY } from "@/graphql/queries";
+import {
+  ALL_SHOW_QUERY,
+  SINGLE_SHOW_QUERY,
+  SINGLE_EPISODE_QUERY,
+} from "@/graphql/queries";
 import { useQuery } from "@vue/apollo-composable";
-import { computed, watchEffect, ref, onUpdated, onBeforeMount } from "vue";
+import {
+  computed,
+  watchEffect,
+  ref,
+  onUpdated,
+  onBeforeMount,
+  onBeforeUpdate,
+  watch,
+} from "vue";
 import { useRoute } from "vue-router";
 import BlackAds from "@/components/Home/Advertising/BlackAds.vue";
 import ShowItem from "@/components/Show/ShowItem.vue";
 import type { Article_Filter } from "@/generated/graphql";
 
 const route = useRoute();
-const { result } = useQuery(ALL_SHOW_QUERY);
-const singleFood = computed(
-  ():Article_Filter =>
-    result.value?.shows
-      ?.find(
-        (ele) =>
-          ele?.translations[0]?.title == route.query.name ||
-          ele?.translations[1]?.title == route.query.name
-      )
-      .all_episodes?.find((ele) => ele.id == route.params.id) ?? []
-);
+const { result, variables } = useQuery(SINGLE_EPISODE_QUERY, {
+  id: route.params.id,
+});
 
+let singleFood = computed(
+  (): Article_Filter => result.value?.Article_by_id ?? []
+);
+onUpdated(() => {
+  window.scrollTo(0, 0);
+  variables.value = { id: route.params.id };
+});
 onBeforeMount(() => {
   window.scrollTo(0, 0);
 });
-onUpdated(() => {
-  window.scrollTo(0, 0);
-});
+
 </script>
 
 <style scoped lang="scss">

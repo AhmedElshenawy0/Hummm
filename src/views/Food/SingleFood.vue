@@ -82,7 +82,7 @@ import FoodItem from "@/components/Foods/FoodItem.vue";
 import TwoAds from "@/components/Home/Advertising/TwoAds.vue";
 import SubscribeCom from "@/components/Home/SubscribSection/SubscribeCom.vue";
 import type { Article } from "@/generated/graphql";
-import { ALL_FOOD_QUERY } from "@/graphql/queries";
+import { ALL_FOOD_QUERY,Single_FOOD_QUERY, LIMITED_FOOD_QUERY } from "@/graphql/queries";
 import { useQuery } from "@vue/apollo-composable";
 import { computed, onBeforeMount, onUpdated, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -91,20 +91,25 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 
 // Get Food By Id
-const { result } = useQuery(ALL_FOOD_QUERY);
+const { result } = useQuery(LIMITED_FOOD_QUERY, {limit:8});
+const getSingleFood = useQuery(Single_FOOD_QUERY, {id: route.params.id})
 const foods = computed(() => result.value?.Article ?? []);
 const singleFood = computed(
   () =>
-    result.value?.Article.find((ele: Article) => ele.id == route.params.id) ??
+  getSingleFood?.result.value?.Article_by_id ??
     []
 );
 const router = useRouter();
-
+watchEffect(() => {
+  // console.log(getSingleFood.result.value.Article_by_id);
+})
 onBeforeMount(() => {
   window.scrollTo(0, 0);
 });
 onUpdated(() => {
   window.scrollTo(0, 0);
+  getSingleFood.variables.value = { id: route.params.id };
+  
 });
 </script>
 

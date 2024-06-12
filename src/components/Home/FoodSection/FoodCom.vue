@@ -34,7 +34,7 @@ import FoodItem from "./FoodItem.vue";
 import CenteredItem from "./CenteredItem.vue";
 import { computed, ref, watchEffect } from "vue";
 import { useQuery } from "@vue/apollo-composable";
-import { ALL_FOOD_QUERY, LIMITED_FOOD_QUERY } from "@/graphql/queries";
+import { ALL_FOOD_QUERY } from "@/graphql/queries";
 import type { Article_Filter } from "@/generated/graphql";
 
 // Fetch Limited Food

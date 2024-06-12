@@ -5,7 +5,11 @@
       $router.push({
         name: 'Single-Show',
         params: { id: myData.id },
-        query: { name: myData?.shows?.translations[0].title || myData?.shows?.translations[1].title},
+        query: {
+          name:
+            myData?.shows?.translations[0].title ||
+            myData?.shows?.translations[1].title,
+        },
       })
     "
   >
@@ -18,12 +22,11 @@
         }`"
         alt=""
       />
-      <VideoIcon iconColor="#000000"/>
-
+      <VideoIcon iconColor="#000000" />
     </div>
     <div class="info">
       <button
-      @click.stop
+        @click.stop
         class="black-btn text-white"
         @click="
           $router.push({
@@ -103,8 +106,13 @@
 import { type Shows } from "@/generated/graphql";
 import SubscribeCom from "../Home/SubscribSection/SubscribeCom.vue";
 import VideoIcon from "../VideoIcon.vue";
+import { watchEffect } from "vue";
 
 const props = defineProps<{ myData: any; showName: string }>();
+
+watchEffect(() => {
+  // console.log(props.myData);
+});
 </script>
 
 <style scoped lang="scss">

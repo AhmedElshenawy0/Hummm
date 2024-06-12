@@ -18,8 +18,6 @@ onUpdated(()=> {
 // Fetch Shows
 const { result } = useQuery(ALL_FOOD_QUERY);
 const episodes = computed(():Article_Filter[] => result.value?.Article);
-let mainEpisode = computed(():Article_Filter => result.value?.Article[0]);
-const main = ref<any>(mainEpisode.value);
 
 const limitedFoods = ref<number>(Math.floor(Math.random() * 35));
 </script>

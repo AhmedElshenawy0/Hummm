@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Article, Article_Filter } from "@/generated/graphql";
+import type { Article_Filter } from "@/generated/graphql";
 
 const props = defineProps<{ data: Article_Filter }>();
 </script>

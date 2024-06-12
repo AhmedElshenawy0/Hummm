@@ -4,7 +4,7 @@
       <div class="playlist-container d-flex flex-column gap-2">
         <div
           class="video-item d-flex gap-2 text-white"
-          v-for="(episode, i) in episodes?.slice(0, 4)"
+          v-for="(episode, i) in show?.all_episodes?.slice(0, 4)"
           :key="i"
           @click="handleClick(episode)"
         >
@@ -93,30 +93,24 @@
         </div>
       </div>
       <PlayedComVue
-        :main="main ? main : mainEpisode"
-        :videoId="main ? main.video : mainEpisode?.video"
+        :main="main ? main : show?.all_episodes[1]"
+        :videoId="main ? main.video : show?.all_episodes[1]?.video"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ALL_SHOW_QUERY, LIMITED_SHOW_QUERY } from "@/graphql/queries";
-import { useQuery } from "@vue/apollo-composable";
-import { computed, ref } from "vue";
+import { ref, watchEffect } from "vue";
 import PlayedComVue from "@/components/Home/ShowSection/PlayedCom.vue";
 import VideoIcon from "../VideoIcon.vue";
 
-const randomShow = ref<number>(Math.floor(Math.random() * 4));
-const { result } = useQuery(ALL_SHOW_QUERY);
-const episodes = computed(
-  () => result?.value?.shows[randomShow.value]?.all_episodes
-);
-let mainEpisode = computed(
-  () => result?.value?.shows[randomShow.value]?.all_episodes[1]
-);
-const main = ref<any>(mainEpisode.value);
+const props = defineProps<{show:any}>()
 
+const main = ref<any>("");
+watchEffect(() => {
+  console.log(props.show)
+})
 // Change Video
 const handleClick = (show: any) => {
   main.value = show;
